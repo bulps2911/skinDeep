@@ -62,6 +62,7 @@ app.post("/upload", (req, res) => {
       );
       const b64 = b64head + converted;
       const imgrgb=[];
+      //jimp is a promise. must finish processing first before running next thing
       Jimp.read(fullPath, (err, img)=>{
         if (err){
           console.log("jimp cannot read img");
@@ -75,11 +76,27 @@ app.post("/upload", (req, res) => {
             const alpha = img.bitmap.data[idx+3];
             if (x==img.bitmap.width -1 && y==img.bitmap.height -1){
               imgrgb.push(red.toString(), green.toString(), blue.toString());
-              console.log("red",red);
-              console.log("green",green);
-              console.log("blue", blue);
-              console.log(imgrgb);
-
+              // console.log("red",red);
+              // console.log("green",green);
+              // console.log("blue", blue);
+              // console.log(imgrgb);
+              const document = {
+                imgUrl: b64,
+                rgb: imgrgb
+              };
+              
+              const photo = new userData(document);
+        
+              photo.save((err, userData) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  // console.log(photo);
+                  console.log("SUCCESS! img uploaded to db");
+                  res.redirect("/");
+                }
+              });
+              
             }
           });
           //res.send(img);
@@ -88,22 +105,6 @@ app.post("/upload", (req, res) => {
         }
       });
 
-      const document = {
-        imgUrl: b64,
-        rgb: imgrgb
-      };
-      
-      const photo = new userData(document);
-
-      photo.save((err, userData) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(photo);
-          console.log("SUCCESS! img uploaded to db");
-          res.redirect("/");
-        }
-      });
     }
   });
 });

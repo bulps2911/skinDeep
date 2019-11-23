@@ -5,7 +5,7 @@ const NotEmptyString={type:String, minLength:1};
 const userDataSchema = new Schema(
     {
       imgUrl: String,
-      rgb: [NotEmptyString]
+      rgb: [Number]
 
     }
   );
