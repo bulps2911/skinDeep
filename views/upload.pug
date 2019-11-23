@@ -1,0 +1,23 @@
+extends layout.pug
+block description
+    p#description #{intro}
+
+block content
+    form(action="/upload" method="POST" enctype="multipart/form-data")
+        .row
+            .col.s12
+                if msg ==1
+                    .success
+                        | Success! Image uploaded! Whee
+                else if msg == 2
+                    .error
+                        | Error during upload
+        .row
+            .col
+                .file-field.input.field
+                    input(type="file" name="userImg" required)
+                    //- .file-path-wrapper
+                    //-     input.file-path.validate(type="text")
+            .col
+                button(type="submit", name="action") 
+                    | Upload
