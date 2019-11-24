@@ -93,7 +93,7 @@ app.post("/upload", (req, res) => {
                 } else {
                   // console.log(photo);
                   console.log("SUCCESS! img uploaded to db");
-                  res.redirect("/");
+                  res.redirect("/result");
                 }
               });
               
@@ -107,6 +107,13 @@ app.post("/upload", (req, res) => {
 
     }
   });
+});
+
+
+app.get("/result", (req, res) => {
+  console.log("GET request for results");
+  res.render("result.pug");
+  //res.sendFile(__dirname + "/" + "index.html");
 });
 
 app.get("/products", async (req, res) => {
