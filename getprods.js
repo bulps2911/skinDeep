@@ -1,18 +1,18 @@
-const mongoose = require("mongoose");
-const MongoClient = require("mongodb").MongoClient;
-//the below {MongoClient} is the same as the above .MongoClient
-//const {MongoClient} = require("mongodb");
-const uri =
-  "mongodb+srv://dbAdmin:98765A321@manacluster-siac4.mongodb.net/skinDeep";
-  // mongoose.connect(uri, { useNewUrlParser: true });
+// const mongoose = require("mongoose");
+// const MongoClient = require("mongodb").MongoClient;
+// //the below {MongoClient} is the same as the above .MongoClient
+// //const {MongoClient} = require("mongodb");
+// const uri =
+//   "mongodb+srv://dbAdmin:98765A321@manacluster-siac4.mongodb.net/skinDeep";
+//   // mongoose.connect(uri, { useNewUrlParser: true });
 
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-   useUnifiedTopology: true
-});
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//    useUnifiedTopology: true
+// });
 //exporting whole function
- const getprod= ()=>{
+ const getprod= (client)=>{
      return new Promise(async (resolve, reject)=>{
         await client.connect((err, db) => {
             if (err) {
@@ -29,15 +29,15 @@ const client = new MongoClient(uri, {
                 .toArray((err, result) => {
                   if (err) {
                     console.log(err);
-                    db.close();
+                    // db.close();
                     reject([]);
                   } else {
                     console.log("images retrieved");
-                    db.close();
+                    // db.close();
                     resolve(result);
                   }
                 });
-              client.close();
+              // client.close();
             }
           });
 

@@ -19,6 +19,9 @@ const uri =
 mongoose.connect(uri, { useNewUrlParser: true });
 require("./models/UserData");
 
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error"));
+
 //routes
 const prod = require("./getprods.js");
 //const prod = require("./prods.js");
@@ -134,7 +137,7 @@ app.get("/products", async (req, res) => {
   console.log("GET request for products");
   let finalResult;
   try {
-    finalResult = await prod();
+    finalResult = await prod(client);
     //const finalString=[];
     const finalString = await `${finalResult.map(each => each.imgUrl)}`;
     const arrayfs = finalString.split(",");
