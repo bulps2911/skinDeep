@@ -7,10 +7,13 @@ const fs = require("fs");
 const Jimp = require("jimp");
 //const UserData =  require("./models/UserData");
 
+const dotenv = require('dotenv');
+dotenv.config();
 //connect to db
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 //make a connection
+const PASSWORD = process.env.PASSWORD || 3000;
 const uri =
   "mongodb+srv://dbAdmin:98765A321@manacluster-siac4.mongodb.net/skinDeep";
 mongoose.connect(uri, { useNewUrlParser: true });
@@ -24,9 +27,11 @@ const userData = mongoose.model("UserData");
 const { MongoClient } = require("mongodb");
 //const userData = mongoose.model("userData", userDataSchema);
 const app = express();
-const server = app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+
+const server = app.listen(PORT, () => {
   //this is a function without args in es6
-  console.log("server up");
+  console.log(`server up at ${PORT}`);
 });
 //app.use(express.static('stats'));
 
