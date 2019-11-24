@@ -4,11 +4,12 @@ const MongoClient = require("mongodb").MongoClient;
 //const {MongoClient} = require("mongodb");
 const uri =
   "mongodb+srv://dbAdmin:98765A321@manacluster-siac4.mongodb.net/skinDeep";
+  // mongoose.connect(uri, { useNewUrlParser: true });
 
 
 const client = new MongoClient(uri, {
-  useNewUrlParser: true
-  //  useUnifiedTopology: true
+  useNewUrlParser: true,
+   useUnifiedTopology: true
 });
 //exporting whole function
  const getprod= ()=>{

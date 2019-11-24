@@ -21,6 +21,7 @@ require("./models/UserData");
 
 //routes
 const prod = require("./getprods.js");
+//const prod = require("./prods.js");
 const upload = require("./upload.js");
 
 const userData = mongoose.model("UserData");
@@ -39,6 +40,14 @@ const client = new MongoClient(uri, {
   useNewUrlParser: true
   //  useUnifiedTopology: true
 });
+// client.connect(uri, (err, db)=>{
+//   if (err){
+//     console.log(err);
+//   } else{
+//     console.log("connected to mongodb");
+//   }
+
+// });
 
 
 //tells express to use pug
@@ -96,7 +105,7 @@ app.post("/upload", (req, res) => {
                 if (err) {
                   console.log(err);
                 } else {
-                  // console.log(photo);
+
                   console.log("SUCCESS! img uploaded to db");
                   res.redirect("/result");
                 }
