@@ -6,7 +6,6 @@ const express = require("express");
 const fs = require("fs");
 const Jimp = require("jimp");
 const gsap = require("gsap");
-//const UserData =  require("./models/UserData");
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -20,17 +19,12 @@ const uri =
 mongoose.connect(uri, { useNewUrlParser: true });
 require("./models/UserData");
 
-// const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "connection error"));
-
 //routes
 const prod = require("./getprods.js");
-//const prod = require("./prods.js");
 const upload = require("./upload.js");
 
 const userData = mongoose.model("UserData");
 const { MongoClient } = require("mongodb");
-//const userData = mongoose.model("userData", userDataSchema);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -38,21 +32,11 @@ const server = app.listen(PORT, () => {
   //this is a function without args in es6
   console.log(`server up at ${PORT}`);
 });
-//app.use(express.static('stats'));
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true
   //  useUnifiedTopology: true
 });
-// client.connect(uri, (err, db)=>{
-//   if (err){
-//     console.log(err);
-//   } else{
-//     console.log("connected to mongodb");
-//   }
-
-// });
-
 
 //tells express to use pug
 app.engine("pug", require("pug").__express);
@@ -61,7 +45,6 @@ app.set("view engine", "pug");
 app.get("/", (req, res) => {
   console.log("GET request for homepage");
   res.render("upload.pug");
-  //res.sendFile(__dirname + "/" + "index.html");
 });
 
 app.post("/upload", (req, res) => {
@@ -72,7 +55,6 @@ app.post("/upload", (req, res) => {
       console.log(err);
     } else {
       //create new record in mongodb
-      //console.log(req);
       const fullPath = "public/" + req.file.filename;
       const b64head = "data:image/jpeg;base64,";
       const converted = new Buffer(fs.readFileSync(req.file.path)).toString(
@@ -94,10 +76,6 @@ app.post("/upload", (req, res) => {
             const alpha = img.bitmap.data[idx+3];
             if (x==img.bitmap.width -1 && y==img.bitmap.height -1){
               imgrgb.push(red.toString(), green.toString(), blue.toString());
-              // console.log("red",red);
-              // console.log("green",green);
-              // console.log("blue", blue);
-              // console.log(imgrgb);
               const document = {
                 imgUrl: b64,
                 rgb: imgrgb
@@ -109,24 +87,16 @@ app.post("/upload", (req, res) => {
                 if (err) {
                   console.log(err);
                 } else {
-
                   console.log("SUCCESS! img uploaded to db");
-                  console.log(photo.rgb);
-                  // const rgbS = photo.rgb.toString();
-                  //console.log(rgbS);
                   res.render("result.pug", {rgb : photo.rgb});
-                  //res.redirect("/result", {rgb:photo.rgb});
                 }
               });
               
             }
           });
-          //res.send(img);
-          //console.log(img);
           console.log("img resized");
         }
       });
-
     }
   });
 });
@@ -134,10 +104,7 @@ app.post("/upload", (req, res) => {
 
 app.get("/result", (req, res) => {
   console.log("GET request for results");
-  console.log(rgb);
-
   res.render("result.pug");
-  //res.sendFile(__dirname + "/" + "index.html");
 });
 
 app.get("/products", async (req, res) => {

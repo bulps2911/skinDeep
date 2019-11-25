@@ -4,20 +4,7 @@ block description
     p#description #{intro}
 
 block content
-    .row
-        .col.s12
-             h4 Your Results
-                //-  if photolist.length
-                //-     | <div class="row">
-                //-     each pic, index in photolist
-                //-         |<div class ="col s3"><img src = #{pic['path']} alt="image" class="responsive-img" /><p class="center-align caption">#{pic['caption']}</p></div> 
-                //-         if (((index+1) % 4) == 0 )
-                //-             </div><div class="row">
-                //-  else
-                .row
-                    .col.s12
-                        .caption Come back soon for your foundation match!
-                        br
-                        ul
-                        each val in rgb
-                            li= val
+    h4 Your Results
+        .caption Come back soon for your foundation match!
+            br
+                p #{rgb}
