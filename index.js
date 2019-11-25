@@ -5,6 +5,7 @@
 const express = require("express");
 const fs = require("fs");
 const Jimp = require("jimp");
+const gsap = require("gsap");
 //const UserData =  require("./models/UserData");
 
 const dotenv = require('dotenv');
@@ -110,7 +111,11 @@ app.post("/upload", (req, res) => {
                 } else {
 
                   console.log("SUCCESS! img uploaded to db");
-                  res.redirect("/result");
+                  console.log(photo.rgb);
+                  // const rgbS = photo.rgb.toString();
+                  //console.log(rgbS);
+                  res.render("result.pug", {rgb : photo.rgb});
+                  //res.redirect("/result", {rgb:photo.rgb});
                 }
               });
               
@@ -129,6 +134,8 @@ app.post("/upload", (req, res) => {
 
 app.get("/result", (req, res) => {
   console.log("GET request for results");
+  console.log(rgb);
+
   res.render("result.pug");
   //res.sendFile(__dirname + "/" + "index.html");
 });

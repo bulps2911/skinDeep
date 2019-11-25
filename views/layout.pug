@@ -4,10 +4,21 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title skinDeep
         style. 
-            ul{ list-style-type:none; float:right;}
+            ul{ list-style-type:none; float:left; background-color:#C19B66}
             li{display:inline;}
+            a{text-decoration:none;color:#955033}
             table.ui.celled img {display: inline-block;}
-            body{text-align:center}
+            body{text-align:center; background-color: #D4BE90}
+            footer{text-align:center}
+            h1{color:#AC8B76; letter-spacing:1px; text-shadow: 3px 2px #955033; font-family: verdana; font-size: 50px}
+            h4{color: #AC8B76; font-family: verdana}
+            p{ color:#955033; font-family: Arial; font-size: 18px}
+            //- nav{background-color : #AC8B76;}
+            @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+            @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+            @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+            //@keyframes rotatepls{100%{-webkit-transform:rotate} }
+            #animate2{display: block; margin: 0 auto; animation:spin 4s linear infinite; -webkit-animation:spin 4s linear infinite; -moz-animation:spin 4s linear infinite;}
     body
         nav
             ul
@@ -15,6 +26,8 @@ html(lang="en")
                     a(href="/") Home 
                 li
                     a(href="products") Products
+        br
+        br
         h1 SkinDeep
 
         - const intro = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam qui deleniti quae suscipit harum quo doloremque nemo laudantium voluptate rerum, adipisci tenetur, dicta quod veniam nisi! Aliquam, id. Libero, reprehenderit."
@@ -22,3 +35,10 @@ html(lang="en")
         block description
 
         block content
+        br
+        br
+
+    footer
+        //- svg#animate2
+        img#animate2(src="https://res.cloudinary.com/db69uk43k/image/upload/v1574663696/animate/animate3_cdcaan.svg", onerror="this.src='https://res.cloudinary.com/db69uk43k/image/upload/v1574647424/animate/animate2_mulehl.png'",alt="sorry")
+

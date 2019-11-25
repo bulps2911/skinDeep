@@ -25,7 +25,7 @@
               db
                 .db(dbName)
                 .collection(collectionName)
-                .find({}, { projection: { _id: 0, shadeName: 1, imgUrl: 1 } })
+                .find({}, { projection: { _id: 0, shadeName: 1, imgUrl: 1 } }).sort( {shadeName:1})
                 .toArray((err, result) => {
                   if (err) {
                     console.log(err);
