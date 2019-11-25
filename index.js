@@ -5,7 +5,7 @@
 const express = require("express");
 const fs = require("fs");
 const Jimp = require("jimp");
-const gsap = require("gsap");
+// const gsap = require("gsap");
 
 const dotenv = require('dotenv');
 dotenv.config();
