@@ -28,7 +28,7 @@ require("./models/UserData");
 //routes
 const prod = require("./getprods.js");
 const upload = require("./upload.js");
-const uploadapi = require("./uploadReact");
+
 
 const userData = mongoose.model("UserData");
 const { MongoClient } = require("mongodb");
